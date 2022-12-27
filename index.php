@@ -15,7 +15,7 @@
         // instructions: get all products from the database and store them in the $products variable
 
 
-        // instructions: if the form was submitted, add the product to the wishlist
+        // instructions: if the form was submitted, add the product to the wishlist or remove it from the wishlist (if it's already in the wishlist)
 
 
 
@@ -48,12 +48,11 @@
             <div class="row row-cols-1 row-cols-md-3 g-4">
                 <div class="col">
                     <div class="card h-100">
-                        <!-- add heart icon that can be used to add to wishlist -->
                         <form 
                             action="<?php echo $_SERVER['REQUEST_URI']; ?>" 
                             method="post">
                             <button type="submit" class="btn btn-link p-0 m-0">
-                                <i class="bi bi-heart" style="position: absolute; top: 10px; right: 10px; font-size: 1.5rem; color: #f00;"></i>
+                                <i class="bi bi-heart-fill" style="position: absolute; top: 10px; right: 10px; font-size: 1.5rem; color: #f00;"></i>
                             </button>
                         </form>
                         <img
@@ -71,7 +70,6 @@
                 </div>
                 <div class="col">
                     <div class="card h-100">
-                        <!-- add heart icon that can be used to add to wishlist -->
                         <form 
                             action="<?php echo $_SERVER['REQUEST_URI']; ?>" 
                             method="post">
@@ -94,7 +92,6 @@
                 </div>
                 <div class="col">
                     <div class="card h-100">
-                        <!-- add heart icon that can be used to add to wishlist -->
                         <form 
                             action="<?php echo $_SERVER['REQUEST_URI']; ?>" 
                             method="post">

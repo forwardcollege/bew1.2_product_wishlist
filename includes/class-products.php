@@ -29,11 +29,11 @@ class Products
         return $products;
     }
 
-    public function addProductToWishlist($product_id)
+    public function toggleWishlist($product_id)
     {
         // Only change code below this line 
 
-            // instruction: add the product to the wishlist
+            // instruction: add the product to the wishlist or remove it from the wishlist (if it's already in the wishlist)
 
 
         // Only change code above this line
