@@ -44,7 +44,7 @@
     </head>
     <body>
         <div class="container mt-5 mb-2 mx-auto" style="max-width: 900px;">
-
+            <!-- Only change code below this line -->
             <div class="row row-cols-1 row-cols-md-3 g-4">
                 <div class="col">
                     <div class="card h-100">
@@ -112,9 +112,10 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div><!-- .row -->
+            <!-- Only change code above this line -->
 
-        </div>
+        </div><!-- .container -->
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
