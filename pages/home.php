@@ -8,10 +8,6 @@
         // instructions: get all products from the database and store them in the $products variable
 
 
-        // instructions: if the form was submitted, add the product to the wishlist or remove it from the wishlist (if it's already in the wishlist)
-
-
-
     // Only change code above this line
 
 ?>
