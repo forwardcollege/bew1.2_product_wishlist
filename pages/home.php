@@ -6,7 +6,7 @@
     // Only change code below this line 
 
         // instructions: get all products from the database and store them in the $products variable
-
+        $all_products = $products->getProducts();
 
     // Only change code above this line
 
@@ -35,72 +35,36 @@
         <div class="container mt-5 mb-2 mx-auto" style="max-width: 900px;">
             <!-- Only change code below this line -->
             <div class="row row-cols-1 row-cols-md-3 g-4">
+            <?php foreach($all_products as $product) : ?>
                 <div class="col">
                     <div class="card h-100">
-                        <form 
-                            action="/wishlist/submit" 
+                        <form
+                            action="wishlist/submit"
                             method="post">
+                            <input type="hidden" name="id" value="<?= $product['id']?>">
+                            <input type="hidden" name="is_wishlist" value="<?= $product['is_wishlist'];?>">
                             <button type="submit" class="btn btn-link p-0 m-0">
+                                <?php if($product['is_wishlist']==0) : ?>
+                                <i class="bi bi-heart" style="position: absolute; top: 10px; right: 10px; font-size: 1.5rem; color: #f00;"></i>
+                                <?php else : ?>
                                 <i class="bi bi-heart-fill" style="position: absolute; top: 10px; right: 10px; font-size: 1.5rem; color: #f00;"></i>
+                                <?php endif ;?>
                             </button>
                         </form>
                         <img
-                            src="https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder-images-product-1_large.png?format=webp&v=1530129292"
+                            src="<?= $product['image_url']; ?>"
                             class="card-img-top"
                             alt="Product 1"
                         />
                         <div class="card-body text-center">
-                            <h5 class="card-title">Product 1</h5>
+                            <h5 class="card-title"><?= $product['name'];?></h5>
                             <p class="card-text">
-                                $10
+                                $<?= $product['price']; ?>
                             </p>
                         </div>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="card h-100">
-                        <form 
-                            action="/wishlist/submit" 
-                            method="post">
-                            <button type="submit" class="btn btn-link p-0 m-0">
-                                <i class="bi bi-heart" style="position: absolute; top: 10px; right: 10px; font-size: 1.5rem; color: #f00;"></i>
-                            </button>
-                        </form>
-                        <img
-                            src="https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder-images-product-2_large.png?format=webp&v=1530129318"
-                            class="card-img-top"
-                            alt="Product 2"
-                        />
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Product 2</h5>
-                            <p class="card-text">
-                                $15
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card h-100">
-                        <form 
-                            action="/wishlist/submit" 
-                            method="post">
-                            <button type="submit" class="btn btn-link p-0 m-0">
-                                <i class="bi bi-heart" style="position: absolute; top: 10px; right: 10px; font-size: 1.5rem; color: #f00;"></i>
-                            </button>
-                        </form>
-                        <img
-                            src="https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder-images-product-3_large.png?format=webp&v=1530129341"
-                            class="card-img-top"
-                            alt="Product 3"
-                        />
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Product 3</h5>
-                            <p class="card-text">
-                                $20
-                            </p>
-                        </div>
-                    </div>
-                </div>
+                <?php endforeach; ?>
             </div><!-- .row -->
             <!-- Only change code above this line -->
 

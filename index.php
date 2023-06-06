@@ -2,8 +2,12 @@
 
     // Only change code below this line
 
-       // Instruction: require all the files you need here. Tips: (includes/functions.php, includes/class-products.php)
-        
+         // Instruction: require all the files you need here. Tips: (includes/functions.php, includes/class-products.php)
+       session_start();
+
+       // require all the functions files
+       require "includes/class-products.php";
+       require "includes/functions.php";
 
 
     // get route
