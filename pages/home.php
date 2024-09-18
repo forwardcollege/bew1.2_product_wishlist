@@ -1,3 +1,17 @@
+<?php 
+    //link to db
+    $database = connectToDB();
+    //chooses table
+    $sql = "SELECT * FROM products";
+    //prep
+    $query = $database -> prepare($sql); 
+    //exec
+    $query->execute();
+    //grabs data
+    $products = $query -> fetchAll();
+
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -19,68 +33,54 @@
         </style>
     </head>
     <body>
-        <div class="container mt-5 mb-2 mx-auto" style="max-width: 900px;">
-            <!-- Only change code below this line -->
-            <div class="row row-cols-1 row-cols-md-3 g-4">
-                <div class="col">
-                    <div class="card h-100">
-                        <button class="btn btn-link p-0 m-0">
-                            <i class="bi bi-heart-fill" style="position: absolute; top: 10px; right: 10px; font-size: 1.5rem; color: #f00;"></i>
-                        </button>
-                        <img
-                            src="https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder-images-product-1_large.png?format=webp&v=1530129292"
-                            class="card-img-top"
-                            alt="Product 1"
-                        />
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Product 1</h5>
-                            <p class="card-text">
-                                $10
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card h-100">
-                        <button class="btn btn-link p-0 m-0">
-                            <i class="bi bi-heart" style="position: absolute; top: 10px; right: 10px; font-size: 1.5rem; color: #f00;"></i>
-                        </button>
-                        <img
-                            src="https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder-images-product-2_large.png?format=webp&v=1530129318"
-                            class="card-img-top"
-                            alt="Product 2"
-                        />
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Product 2</h5>
-                            <p class="card-text">
-                                $15
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card h-100">
-                        <button class="btn btn-link p-0 m-0">
-                            <i class="bi bi-heart" style="position: absolute; top: 10px; right: 10px; font-size: 1.5rem; color: #f00;"></i>
-                        </button>
-                        <img
-                            src="https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder-images-product-3_large.png?format=webp&v=1530129341"
-                            class="card-img-top"
-                            alt="Product 3"
-                        />
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Product 3</h5>
-                            <p class="card-text">
-                                $20
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div><!-- .row -->
-            <!-- Only change code above this line -->
+        
+            <div class="container mt-5 mb-2 mx-auto" style="max-width: 900px;">
+                <div class="row row-cols-1 row-cols-md-3 g-4">
+                    <?php foreach($products as $index => $product) : ?>
+                        <div class="col">
 
-        </div><!-- .container -->
+                            <!--item-->
+                                <div class="card h-100">
 
+                                    <form method="POST" action="wishlist/submit">
+                                        <input type="hidden" name="id" value="<?= $product['id']; ?>">
+                                        <input type="hidden" name="is_wishlist" value="<?= $product['is_wishlist']; ?>">
+                                        
+                                        <?php if ($product["is_wishlist"] == 1) : ?>
+                                            <button class="btn btn-link p-0 m-0">
+                                                <i class="bi bi-heart-fill" style="position: absolute; top: 10px; right: 10px; font-size: 1.5rem; color: #f00;"></i>
+                                            </button>
+                                        <?php else : ?>
+                                            <button class="btn btn-link p-0 m-0">
+                                                <i class="bi bi-heart" style="position: absolute; top: 10px; right: 10px; font-size: 1.5rem; color: #f00;"></i>
+                                            </button>
+                                        <?php endif; ?>
+                                        
+                                    </form>
+
+                                    <img
+                                        src="<?= $product['image_url'];?>"
+                                        class="card-img-top"
+                                        alt="<?= $product['name'];?>"
+                                    />
+                                    <div class="card-body text-center">
+                                        <h5 class="card-title"><?=$product['name'];?></h5>
+                                        <p class="card-text">
+                                            $<?=$product['price'];?>
+                                        </p>
+                                    </div>
+
+                                </div><!--end of card-->
+                                
+                        </div><!--end of column-->
+
+                    <?php endforeach; ?>
+
+                </div><!-- row -->
+
+            </div><!-- .container -->
+
+        
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"
