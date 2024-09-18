@@ -1,30 +1,16 @@
 <?php
 
-    // Only change code below this line
-
-         // Instruction: require all the files you need here. Tips: (includes/functions.php, includes/class-products.php)
-       session_start();
-
-       // require all the functions files
-       require "includes/class-products.php";
-       require "includes/functions.php";
+    session_start();
 
 
     // get route
-    $path = trim( $_SERVER['REQUEST_URI'], '/' ); // remove starting and ending slashes
+    $path = $_SERVER['REQUEST_URI'];
 
     // remove query string
     $path = parse_url( $path, PHP_URL_PATH );
 
-    if ( isset( $path ) ) {
-        switch( $path ) {
-            case 'wishlist/submit':
-                require 'includes/wishlist/submit.php';
-                break;
-            default:
-                require 'pages/home.php';
-                break;
-        }
-    } else {
-        require 'pages/home.php';
+    switch( $path ) {
+        default:
+            require 'pages/home.php';
+            break;
     }
